@@ -1156,3 +1156,136 @@ Traceback (most recent call last):
           └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
 
 TimeoutError
+2026-02-14 02:55:42.719 | ERROR    | src.core.monitor:start:99 - 监控过程中发生错误: 0\nTraceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x101071300>
+    │       └ <function run at 0x100a5d760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x102a08840>
+           │      └ <function Runner.run at 0x100ae9440>
+           └ <asyncio.runners.Runner object at 0x10105deb0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x100ae2fc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x10105deb0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x100ae2f20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x100ae8d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x100a2e840>
+    └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x102d628e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x102db8680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x102e02d80>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x102db96c0>
+                 └ <src.api.parser.MarketParser object at 0x102e02d80>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 80, in _fetch_event
+    event = data[0]
+            └ {'slug': 'dota2-flc-liquid-2026-02-13', 'title': 'Dota2: FLC vs Liquid', 'markets': [{'id': 'mock-market-1', 'question': 'Wil...
+
+KeyError: 0
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x101071300>
+    │       └ <function run at 0x100a5d760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x102a08840>
+           │      └ <function Runner.run at 0x100ae9440>
+           └ <asyncio.runners.Runner object at 0x10105deb0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x100ae2fc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x10105deb0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x100ae2f20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x100ae8d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x100a2e840>
+    └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Task finishe...> result=None>)>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x102d628e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x102db8680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x102e02d80>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x102d19cd0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x102db96c0>
+                 └ <src.api.parser.MarketParser object at 0x102e02d80>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 80, in _fetch_event
+    event = data[0]
+            └ {'slug': 'dota2-flc-liquid-2026-02-13', 'title': 'Dota2: FLC vs Liquid', 'markets': [{'id': 'mock-market-1', 'question': 'Wil...
+
+KeyError: 0

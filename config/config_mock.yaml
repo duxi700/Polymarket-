@@ -1,0 +1,23 @@
+# Mock API 配置文件
+# 用于本地测试，指向本地模拟服务器
+
+# API配置
+api:
+  gamma_url: "http://localhost:8080"  # Mock Gamma API
+  clob_url: "http://localhost:8080"   # Mock CLOB API
+  timeout: 30  # 请求超时时间（秒）
+
+# 监控配置
+monitoring:
+  live_market_interval: 5  # 实时市场轮询间隔（秒）
+  
+# 速率限制
+rate_limit:
+  max_requests_per_minute: 100
+  
+# 日志配置
+logging:
+  level: "INFO"
+  log_dir: "logs"
+  rotation: "100 MB"
+  retention: "7 days"
