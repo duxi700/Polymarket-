@@ -1,0 +1,1158 @@
+2026-02-14 02:35:54.202 | ERROR    | src.core.monitor:start:99 - 监控过程中发生错误: \nTraceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x104f42000>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x104f7f600>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x104f6a780>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=10, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x104f42000>
+                  │    └ <function TCPConnector._create_connection at 0x104b34860>
+                  └ <aiohttp.connector.TCPConnector object at 0x104f6a930>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=10, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x104f42000>
+                     │    └ <function TCPConnector._create_direct_connection at 0x104b34fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x104f6a930>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x104b34a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x104f6a930>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1298, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+                 │                └ <function start_connection at 0x104b145e0>
+                 └ <module 'aiohappyeyeballs' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/__init__.py'>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+    │                  │          └ <function staggered_race at 0x104b14540>
+    │                  └ <module 'aiohappyeyeballs._staggered' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_stagg...
+    └ None
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+                 └ <function _wait_one at 0x104b144a0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 46, in _wait_one
+    return await wait_next
+                 └ <Future cancelled>
+
+asyncio.exceptions.CancelledError
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x103239300>
+    │       └ <function run at 0x102c25760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x104b70840>
+           │      └ <function Runner.run at 0x102cb1440>
+           └ <asyncio.runners.Runner object at 0x103224620>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x102caafc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x103224620>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x102caaf20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x102cb0d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x102bf2840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x104eca8e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x104f20680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x104f6a8d0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x104f216c0>
+                 └ <src.api.parser.MarketParser object at 0x104f6a8d0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x104bbb100>
+               │    └ <aiohttp.client.ClientSession object at 0x104f6a780>
+               └ <src.api.parser.MarketParser object at 0x104f6a8d0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x104f6abc0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x104f6abc0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 624, in _request
+    with timer:
+         └ <aiohttp.helpers.TimerContext object at 0x104f77e80>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/helpers.py", line 713, in __exit__
+    raise asyncio.TimeoutError from exc_val
+          │       │                 └ CancelledError()
+          │       └ <class 'TimeoutError'>
+          └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+TimeoutError
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x104f42000>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x104f7f600>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x104f6a780>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=10, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x104f42000>
+                  │    └ <function TCPConnector._create_connection at 0x104b34860>
+                  └ <aiohttp.connector.TCPConnector object at 0x104f6a930>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=10, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x104f42000>
+                     │    └ <function TCPConnector._create_direct_connection at 0x104b34fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x104f6a930>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x104b34a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x104f6a930>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1298, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+                 │                └ <function start_connection at 0x104b145e0>
+                 └ <module 'aiohappyeyeballs' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/__init__.py'>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+    │                  │          └ <function staggered_race at 0x104b14540>
+    │                  └ <module 'aiohappyeyeballs._staggered' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_stagg...
+    └ None
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+                 └ <function _wait_one at 0x104b144a0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 46, in _wait_one
+    return await wait_next
+                 └ <Future cancelled>
+
+asyncio.exceptions.CancelledError
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x103239300>
+    │       └ <function run at 0x102c25760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x104b70840>
+           │      └ <function Runner.run at 0x102cb1440>
+           └ <asyncio.runners.Runner object at 0x103224620>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x102caafc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x103224620>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x102caaf20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x102cb0d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x102bf2840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x104f6a800>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x104eca8e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x104f20680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x104f6a8d0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x104f6a480>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x104f216c0>
+                 └ <src.api.parser.MarketParser object at 0x104f6a8d0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x104bbb100>
+               │    └ <aiohttp.client.ClientSession object at 0x104f6a780>
+               └ <src.api.parser.MarketParser object at 0x104f6a8d0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x104f6abc0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x104f6abc0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 624, in _request
+    with timer:
+         └ <aiohttp.helpers.TimerContext object at 0x104f77e80>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/helpers.py", line 713, in __exit__
+    raise asyncio.TimeoutError from exc_val
+          │       │                 └ CancelledError()
+          │       └ <class 'TimeoutError'>
+          └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+TimeoutError
+2026-02-14 02:38:55.881 | ERROR    | src.api.parser:_fetch_event:93 - 请求事件信息失败: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]\n
+2026-02-14 02:38:55.882 | ERROR    | src.core.monitor:start:99 - 监控过程中发生错误: 无法获取事件信息: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]\nTraceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1313, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs, sock=sock)
+                 │    │     │                  │       │            └ <socket.socket [closed] fd=-1, family=30, type=1, proto=6>
+                 │    │     │                  │       └ {'ssl': <ssl.SSLContext object at 0x102a63950>, 'server_hostname': 'gamma-api.polymarket.com'}
+                 │    │     │                  └ (functools.partial(<class 'aiohttp.client_proto.ResponseHandler'>, loop=<_UnixSelectorEventLoop running=True closed=False deb...
+                 │    │     └ <function BaseEventLoop.create_connection at 0x100b27ec0>
+                 │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+                 └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1146, in create_connection
+    transport, protocol = await self._create_connection_transport(
+                                │    └ <function BaseEventLoop._create_connection_transport at 0x100b27f60>
+                                └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1179, in _create_connection_transport
+    await waiter
+          └ <Future finished exception=ConnectionResetError(54, 'Connection reset by peer')>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/selector_events.py", line 984, in _read_ready__get_buffer
+    nbytes = self._sock.recv_into(buf)
+             │    │               └ <memory at 0x102eabd00>
+             │    └ None
+             └ <_SelectorSocketTransport closed fd=10>
+
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x102b5f060>
+               │    └ <aiohttp.client.ClientSession object at 0x1026d5be0>
+               └ <src.api.parser.MarketParser object at 0x1037dacc0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x1037dab90>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x1037dab90>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x1037ef600>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x1026d5be0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+                  │    └ <function TCPConnector._create_connection at 0x102ad8860>
+                  └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+                     │    └ <function TCPConnector._create_direct_connection at 0x102ad8fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1611, in _create_direct_connection
+    raise last_exc
+          └ ClientConnectorError(ConnectionKey(host='gamma-api.polymarket.com', port=443, is_ssl=True, ssl=True, proxy=None, proxy_auth=N...
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x102ad8a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1321, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+          │            │   └ <property object at 0x102a82250>
+          │            └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+          └ <class 'aiohttp.client_exceptions.ClientConnectorError'>
+
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x1010b5300>
+    │       └ <function run at 0x100aa1760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x102b14840>
+           │      └ <function Runner.run at 0x100b2d440>
+           └ <asyncio.runners.Runner object at 0x1010a2000>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x100b26fc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x1010a2000>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x100b26f20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x100b2cd60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x100a72840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x10373a8e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x103790680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x1037dacc0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x1037916c0>
+                 └ <src.api.parser.MarketParser object at 0x1037dacc0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 94, in _fetch_event
+    raise ValueError(f"无法获取事件信息: {e}")
+
+ValueError: 无法获取事件信息: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1313, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs, sock=sock)
+                 │    │     │                  │       │            └ <socket.socket [closed] fd=-1, family=30, type=1, proto=6>
+                 │    │     │                  │       └ {'ssl': <ssl.SSLContext object at 0x102a63950>, 'server_hostname': 'gamma-api.polymarket.com'}
+                 │    │     │                  └ (functools.partial(<class 'aiohttp.client_proto.ResponseHandler'>, loop=<_UnixSelectorEventLoop running=True closed=False deb...
+                 │    │     └ <function BaseEventLoop.create_connection at 0x100b27ec0>
+                 │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+                 └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1146, in create_connection
+    transport, protocol = await self._create_connection_transport(
+                                │    └ <function BaseEventLoop._create_connection_transport at 0x100b27f60>
+                                └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1179, in _create_connection_transport
+    await waiter
+          └ <Future finished exception=ConnectionResetError(54, 'Connection reset by peer')>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/selector_events.py", line 984, in _read_ready__get_buffer
+    nbytes = self._sock.recv_into(buf)
+             │    │               └ <memory at 0x102eabd00>
+             │    └ None
+             └ <_SelectorSocketTransport closed fd=10>
+
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x102b5f060>
+               │    └ <aiohttp.client.ClientSession object at 0x1026d5be0>
+               └ <src.api.parser.MarketParser object at 0x1037dacc0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x1037dab90>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x1037dab90>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x1037ef600>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x1026d5be0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+                  │    └ <function TCPConnector._create_connection at 0x102ad8860>
+                  └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+                     │    └ <function TCPConnector._create_direct_connection at 0x102ad8fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1611, in _create_direct_connection
+    raise last_exc
+          └ ClientConnectorError(ConnectionKey(host='gamma-api.polymarket.com', port=443, is_ssl=True, ssl=True, proxy=None, proxy_auth=N...
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x102ad8a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x102ae9370>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1321, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+          │            │   └ <property object at 0x102a82250>
+          │            └ <aiohttp.client_reqrep.ClientRequest object at 0x1037dad50>
+          └ <class 'aiohttp.client_exceptions.ClientConnectorError'>
+
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x1010b5300>
+    │       └ <function run at 0x100aa1760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x102b14840>
+           │      └ <function Runner.run at 0x100b2d440>
+           └ <asyncio.runners.Runner object at 0x1010a2000>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x100b26fc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x1010a2000>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x100b26f20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x100b2cd60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x100a72840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x1037d9390>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x10373a8e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x103790680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x1037dacc0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x102e320f0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x1037916c0>
+                 └ <src.api.parser.MarketParser object at 0x1037dacc0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 94, in _fetch_event
+    raise ValueError(f"无法获取事件信息: {e}")
+
+ValueError: 无法获取事件信息: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+2026-02-14 02:41:32.220 | ERROR    | src.api.parser:_fetch_event:93 - 请求事件信息失败: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]\n
+2026-02-14 02:41:32.221 | ERROR    | src.core.monitor:start:99 - 监控过程中发生错误: 无法获取事件信息: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]\nTraceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1313, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs, sock=sock)
+                 │    │     │                  │       │            └ <socket.socket [closed] fd=-1, family=30, type=1, proto=6>
+                 │    │     │                  │       └ {'ssl': <ssl.SSLContext object at 0x106b9b950>, 'server_hostname': 'gamma-api.polymarket.com'}
+                 │    │     │                  └ (functools.partial(<class 'aiohttp.client_proto.ResponseHandler'>, loop=<_UnixSelectorEventLoop running=True closed=False deb...
+                 │    │     └ <function BaseEventLoop.create_connection at 0x104ab3ec0>
+                 │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+                 └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1146, in create_connection
+    transport, protocol = await self._create_connection_transport(
+                                │    └ <function BaseEventLoop._create_connection_transport at 0x104ab3f60>
+                                └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1179, in _create_connection_transport
+    await waiter
+          └ <Future finished exception=ConnectionResetError(54, 'Connection reset by peer')>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/selector_events.py", line 984, in _read_ready__get_buffer
+    nbytes = self._sock.recv_into(buf)
+             │    │               └ <memory at 0x106e13d00>
+             │    └ None
+             └ <_SelectorSocketTransport closed fd=10>
+
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x106c97100>
+               │    └ <aiohttp.client.ClientSession object at 0x1067120c0>
+               └ <src.api.parser.MarketParser object at 0x10704ade0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x10704b160>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x10704b160>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x10705b4c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x1067120c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+                  │    └ <function TCPConnector._create_connection at 0x106c10860>
+                  └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+                     │    └ <function TCPConnector._create_direct_connection at 0x106c10fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1611, in _create_direct_connection
+    raise last_exc
+          └ ClientConnectorError(ConnectionKey(host='gamma-api.polymarket.com', port=443, is_ssl=True, ssl=True, proxy=None, proxy_auth=N...
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x106c10a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1321, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+          │            │   └ <property object at 0x106bbe200>
+          │            └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+          └ <class 'aiohttp.client_exceptions.ClientConnectorError'>
+
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x105041300>
+    │       └ <function run at 0x104a2d760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x106c4c840>
+           │      └ <function Runner.run at 0x104ab9440>
+           └ <asyncio.runners.Runner object at 0x1047d5430>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x104ab2fc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x1047d5430>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x104ab2f20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x104ab8d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x1049fe840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x106fa68e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x106ffc680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x10704ade0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x106ffd6c0>
+                 └ <src.api.parser.MarketParser object at 0x10704ade0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 94, in _fetch_event
+    raise ValueError(f"无法获取事件信息: {e}")
+
+ValueError: 无法获取事件信息: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1313, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs, sock=sock)
+                 │    │     │                  │       │            └ <socket.socket [closed] fd=-1, family=30, type=1, proto=6>
+                 │    │     │                  │       └ {'ssl': <ssl.SSLContext object at 0x106b9b950>, 'server_hostname': 'gamma-api.polymarket.com'}
+                 │    │     │                  └ (functools.partial(<class 'aiohttp.client_proto.ResponseHandler'>, loop=<_UnixSelectorEventLoop running=True closed=False deb...
+                 │    │     └ <function BaseEventLoop.create_connection at 0x104ab3ec0>
+                 │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+                 └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1146, in create_connection
+    transport, protocol = await self._create_connection_transport(
+                                │    └ <function BaseEventLoop._create_connection_transport at 0x104ab3f60>
+                                └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1179, in _create_connection_transport
+    await waiter
+          └ <Future finished exception=ConnectionResetError(54, 'Connection reset by peer')>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/selector_events.py", line 984, in _read_ready__get_buffer
+    nbytes = self._sock.recv_into(buf)
+             │    │               └ <memory at 0x106e13d00>
+             │    └ None
+             └ <_SelectorSocketTransport closed fd=10>
+
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x106c97100>
+               │    └ <aiohttp.client.ClientSession object at 0x1067120c0>
+               └ <src.api.parser.MarketParser object at 0x10704ade0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x10704b160>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x10704b160>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x10705b4c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x1067120c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+                  │    └ <function TCPConnector._create_connection at 0x106c10860>
+                  └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+                     │    └ <function TCPConnector._create_direct_connection at 0x106c10fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1611, in _create_direct_connection
+    raise last_exc
+          └ ClientConnectorError(ConnectionKey(host='gamma-api.polymarket.com', port=443, is_ssl=True, ssl=True, proxy=None, proxy_auth=N...
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x106c10a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x10704ad20>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1321, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+          │            │   └ <property object at 0x106bbe200>
+          │            └ <aiohttp.client_reqrep.ClientRequest object at 0x104cecd40>
+          └ <class 'aiohttp.client_exceptions.ClientConnectorError'>
+
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x105041300>
+    │       └ <function run at 0x104a2d760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x106c4c840>
+           │      └ <function Runner.run at 0x104ab9440>
+           └ <asyncio.runners.Runner object at 0x1047d5430>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x104ab2fc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x1047d5430>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x104ab2f20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x104ab8d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x1049fe840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x10704a8c0>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x106fa68e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x106ffc680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x10704ade0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x106822240>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x106ffd6c0>
+                 └ <src.api.parser.MarketParser object at 0x10704ade0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 94, in _fetch_event
+    raise ValueError(f"无法获取事件信息: {e}")
+
+ValueError: 无法获取事件信息: Cannot connect to host gamma-api.polymarket.com:443 ssl:default [Connection reset by peer]
+2026-02-14 02:44:11.202 | ERROR    | src.core.monitor:start:99 - 监控过程中发生错误: \nTraceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x103340d40>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x103b2b4c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x1033fe0c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x103340d40>
+                  │    └ <function TCPConnector._create_connection at 0x1030d0860>
+                  └ <aiohttp.connector.TCPConnector object at 0x1031603e0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x103340d40>
+                     │    └ <function TCPConnector._create_direct_connection at 0x1030d0fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x1031603e0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x1030d0a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x1031603e0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1298, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+                 │                └ <function start_connection at 0x1030b05e0>
+                 └ <module 'aiohappyeyeballs' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/__init__.py'>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+    │                  │          └ <function staggered_race at 0x1030b0540>
+    │                  └ <module 'aiohappyeyeballs._staggered' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_stagg...
+    └ None
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+                 └ <function _wait_one at 0x1030b04a0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 46, in _wait_one
+    return await wait_next
+                 └ <Future cancelled>
+
+asyncio.exceptions.CancelledError
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x101789300>
+    │       └ <function run at 0x101175760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x10310c840>
+           │      └ <function Runner.run at 0x101201440>
+           └ <asyncio.runners.Runner object at 0x1010266f0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x1011fafc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x1010266f0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x1011faf20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x101200d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x101146840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x103a768e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x103acc680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x103b157c0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x103acd6c0>
+                 └ <src.api.parser.MarketParser object at 0x103b157c0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x103157060>
+               │    └ <aiohttp.client.ClientSession object at 0x1033fe0c0>
+               └ <src.api.parser.MarketParser object at 0x103b157c0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x103b16cb0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x103b16cb0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 624, in _request
+    with timer:
+         └ <aiohttp.helpers.TimerContext object at 0x103b23980>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/helpers.py", line 713, in __exit__
+    raise asyncio.TimeoutError from exc_val
+          │       │                 └ CancelledError()
+          │       └ <class 'TimeoutError'>
+          └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+TimeoutError
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 779, in _request
+    resp = await handler(req)
+                 │       └ <aiohttp.client_reqrep.ClientRequest object at 0x103340d40>
+                 └ <function ClientSession._request.<locals>._connect_and_send_request at 0x103b2b4c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+                 │    └ None
+                 └ <aiohttp.client.ClientSession object at 0x1033fe0c0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x103340d40>
+                  │    └ <function TCPConnector._create_connection at 0x1030d0860>
+                  └ <aiohttp.connector.TCPConnector object at 0x1031603e0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=30, connect=None, sock_read=None, sock_connect=None, ceil_threshold=5)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x103340d40>
+                     │    └ <function TCPConnector._create_direct_connection at 0x1030d0fe0>
+                     └ <aiohttp.connector.TCPConnector object at 0x1031603e0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                          │    └ <function TCPConnector._wrap_create_connection at 0x1030d0a40>
+                          └ <aiohttp.connector.TCPConnector object at 0x1031603e0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/connector.py", line 1298, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+                 │                └ <function start_connection at 0x1030b05e0>
+                 └ <module 'aiohappyeyeballs' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/__init__.py'>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+    │                  │          └ <function staggered_race at 0x1030b0540>
+    │                  └ <module 'aiohappyeyeballs._staggered' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_stagg...
+    └ None
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+                 └ <function _wait_one at 0x1030b04a0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohappyeyeballs/_staggered.py", line 46, in _wait_one
+    return await wait_next
+                 └ <Future cancelled>
+
+asyncio.exceptions.CancelledError
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 95, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x101789300>
+    │       └ <function run at 0x101175760>
+    └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x10310c840>
+           │      └ <function Runner.run at 0x101201440>
+           └ <asyncio.runners.Runner object at 0x1010266f0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at /Users/apple/Desktop/polymarket信号机器人/main.py:75> cb=[_run_until_complete_...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x1011fafc0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x1010266f0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 671, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x1011faf20>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 638, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x101200d60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 1971, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x101146840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x103b16b60>()>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/main.py", line 75, in main
+    await monitor.start()
+          │       └ <function PolymarketMonitor.start at 0x103a768e0>
+          └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+
+> File "/Users/apple/Desktop/polymarket信号机器人/src/core/monitor.py", line 82, in start
+    self.market_info = await self.parser.parse_market_url(self.market_url)
+    │    │                   │    │      │                │    └ 'https://polymarket.com/event/dota2-flc-liquid-2026-02-13'
+    │    │                   │    │      │                └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+    │    │                   │    │      └ <function MarketParser.parse_market_url at 0x103acc680>
+    │    │                   │    └ <src.api.parser.MarketParser object at 0x103b157c0>
+    │    │                   └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+    │    └ None
+    └ <src.core.monitor.PolymarketMonitor object at 0x10314bcb0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 55, in parse_market_url
+    return await self._fetch_event(slug)
+                 │    │            └ 'dota2-flc-liquid-2026-02-13'
+                 │    └ <function MarketParser._fetch_event at 0x103acd6c0>
+                 └ <src.api.parser.MarketParser object at 0x103b157c0>
+
+  File "/Users/apple/Desktop/polymarket信号机器人/src/api/parser.py", line 73, in _fetch_event
+    async with self.session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+               │    │       │   │            │       └ <class 'aiohttp.client.ClientTimeout'>
+               │    │       │   │            └ <module 'aiohttp' from '/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/__init__.py'>
+               │    │       │   └ 'https://gamma-api.polymarket.com/events?slug=dota2-flc-liquid-2026-02-13'
+               │    │       └ <function ClientSession.get at 0x103157060>
+               │    └ <aiohttp.client.ClientSession object at 0x1033fe0c0>
+               └ <src.api.parser.MarketParser object at 0x103b157c0>
+
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 1510, in __aenter__
+    self._resp: _RetType = await self._coro
+    │    │                       │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │                       └ <aiohttp.client._BaseRequestContextManager object at 0x103b16cb0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._BaseRequestContextManager object at 0x103b16cb0>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/client.py", line 624, in _request
+    with timer:
+         └ <aiohttp.helpers.TimerContext object at 0x103b23980>
+  File "/Users/apple/Library/Python/3.12/lib/python/site-packages/aiohttp/helpers.py", line 713, in __exit__
+    raise asyncio.TimeoutError from exc_val
+          │       │                 └ CancelledError()
+          │       └ <class 'TimeoutError'>
+          └ <module 'asyncio' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/__init__.py'>
+
+TimeoutError

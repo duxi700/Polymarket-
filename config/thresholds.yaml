@@ -1,0 +1,47 @@
+# Edge 信号检测阈值配置
+
+# Level 1: 情绪异常（内部标记，不输出）
+level1:
+  enabled: true
+  price_change_pct: 0.15  # 价格变化百分比阈值（15%）
+  time_window_seconds: 300  # 时间窗口（秒，5分钟）
+  volume_spike_ratio: 2.0  # 成交量放大倍数
+
+# Level 2: 潜在 Edge（可选输出，默认关闭）
+level2:
+  enabled: false
+  extreme_percentile: 0.1  # 极端价格分位数（10%）
+  lookback_minutes: 15  # 回溯时间（分钟）
+
+# Level 3: 高 EV 情绪错配（必须输出）
+level3:
+  enabled: true
+  
+  # 条件1: 价格极端变化
+  extreme_price_change_pct: 0.25  # 极端价格变化阈值（25%）
+  extreme_time_window_min: 10  # 极端变化时间窗口（分钟）
+  
+  # 条件2: 价格回归迹象
+  rebound_min_pct: 0.05  # 最小回归百分比（5%）
+  rebound_time_window_min: 3  # 回归检测时间窗口（分钟）
+  
+  # 条件3: 流动性检查
+  min_bid_ask_depth: 50  # 最小买卖盘深度
+  max_spread_pct: 0.05  # 最大买卖价差百分比（5%）
+  min_volume_threshold: 10  # 最小成交量阈值
+  
+  # 条件4: 信号冷却
+  signal_cooldown_minutes: 15  # 同一 outcome 信号冷却时间（分钟）
+
+# 噪声过滤规则
+filters:
+  min_price_change: 0.01  # 最小价格变化（1%）
+  min_volume: 10  # 最小成交量
+  require_both_sides: true  # 是否要求买卖双边都有挂单
+  min_data_points: 10  # 最小数据点数（用于统计计算）
+  
+# 市场状态判断
+market_state:
+  volume_spike_threshold: 2.0  # 成交量异常倍数
+  volatility_high_threshold: 0.1  # 高波动率阈值
+  liquidity_low_threshold: 100  # 低流动性阈值

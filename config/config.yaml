@@ -1,0 +1,38 @@
+# Polymarket 监控系统配置文件
+
+# API 配置
+api:
+  clob_url: "https://clob.polymarket.com"
+  gamma_url: "https://gamma-api.polymarket.com"
+  timeout: 30  # 请求超时时间（秒）
+  max_retries: 3  # 最大重试次数
+
+# 轮询配置
+polling:
+  live_market_interval: 5  # 活跃市场轮询间隔（秒）
+  normal_market_interval: 30  # 正常市场轮询间隔（秒）
+  auto_adjust: true  # 是否根据市场活跃度自动调整间隔
+
+# 速率限制
+rate_limit:
+  max_requests_per_minute: 100  # 每分钟最大请求数
+  burst_size: 10  # 突发请求大小
+
+# 状态缓存
+cache:
+  max_history_points: 1000  # 最大历史数据点数
+  time_windows:  # 监控的时间窗口（分钟）
+    - 1
+    - 5
+    - 15
+    - 30
+
+# 日志配置
+logging:
+  level: "INFO"  # 日志级别: DEBUG, INFO, WARNING, ERROR
+  console_level: "INFO"  # 控制台日志级别
+  file: "logs/monitor.log"  # 日志文件路径
+  error_file: "logs/errors.log"  # 错误日志文件
+  rotation: "100 MB"  # 日志轮转大小
+  retention: "7 days"  # 日志保留时间
+  compression: "zip"  # 日志压缩格式
