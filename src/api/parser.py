@@ -4,6 +4,7 @@ Polymarket URL 解析器
 """
 
 import re
+import json
 import aiohttp
 from typing import Dict, List, Optional
 from loguru import logger
@@ -32,6 +33,7 @@ class MarketParser:
         支持的 URL 格式:
         - https://polymarket.com/event/slug
         - https://polymarket.com/market/slug
+        - https://polymarket.com/sports/slug
         
         Args:
             url: Polymarket 市场 URL
@@ -43,15 +45,22 @@ class MarketParser:
             ValueError: URL 格式无效或市场不存在
         """
         # 提取 slug
-        match = re.search(r'polymarket\.com/(event|market)/([^/?&#]+)', url)
+        match = re.search(r'polymarket\.com/(event|market|sports)/(.*)', url)
         if not match:
             raise ValueError(f"无效的 Polymarket URL: {url}")
         
         url_type, slug = match.groups()
+        # 移除查询参数和片段
+        slug = slug.split('?')[0].split('#')[0]
+        
+        # 对于 sports URL，提取最后一个路径部分作为 slug
+        if url_type == "sports":
+            slug = slug.split('/')[-1]
+        
         logger.info(f"解析 URL: type={url_type}, slug={slug}")
         
         # 根据类型调用不同的解析方法
-        if url_type == "event":
+        if url_type in ("event", "sports"):
             return await self._fetch_event(slug)
         else:
             return await self._fetch_market(slug)
@@ -137,7 +146,7 @@ class MarketParser:
         condition_id = market.get("conditionId") or market.get("condition_id", "")
         question = market.get("question", "")
         
-        # 解析 outcomes
+        # 解析 outcomes（兼容旧字段 tokens 和新字段 outcomes/clobTokenIds）
         outcomes = []
         tokens = market.get("tokens", [])
         
@@ -149,6 +158,44 @@ class MarketParser:
                 price=float(token.get("price", 0.0))
             )
             outcomes.append(outcome)
+
+        if not outcomes:
+            raw_outcomes = market.get("outcomes")
+            raw_prices = market.get("outcomePrices")
+            raw_token_ids = market.get("clobTokenIds")
+
+            try:
+                parsed_outcomes = json.loads(raw_outcomes) if isinstance(raw_outcomes, str) else (raw_outcomes or [])
+            except json.JSONDecodeError:
+                parsed_outcomes = []
+
+            try:
+                parsed_prices = json.loads(raw_prices) if isinstance(raw_prices, str) else (raw_prices or [])
+            except json.JSONDecodeError:
+                parsed_prices = []
+
+            try:
+                parsed_token_ids = json.loads(raw_token_ids) if isinstance(raw_token_ids, str) else (raw_token_ids or [])
+            except json.JSONDecodeError:
+                parsed_token_ids = []
+
+            for i, outcome_name in enumerate(parsed_outcomes):
+                token_id = str(parsed_token_ids[i]) if i < len(parsed_token_ids) else ""
+                price = 0.0
+                if i < len(parsed_prices):
+                    try:
+                        price = float(parsed_prices[i])
+                    except (TypeError, ValueError):
+                        price = 0.0
+
+                outcomes.append(
+                    OutcomeInfo(
+                        name=str(outcome_name),
+                        token_id=token_id,
+                        outcome_id=token_id,
+                        price=price
+                    )
+                )
         
         market_info = MarketInfo(
             market_id=condition_id,

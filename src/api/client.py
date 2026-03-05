@@ -5,12 +5,14 @@ Polymarket API 客户端
 
 import aiohttp
 import asyncio
+from aiohttp import TCPConnector
 from typing import Dict, List, Optional
 from loguru import logger
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 
 from .models import OrderBookData, OrderBookLevel, TradeData
 from ..utils.rate_limiter import RateLimiter
+from ..utils.ssl_context import create_ssl_context
 
 
 class PolymarketClient:
@@ -43,7 +45,10 @@ class PolymarketClient:
     
     async def __aenter__(self):
         """异步上下文管理器入口"""
-        self.session = aiohttp.ClientSession(timeout=self.timeout)
+        self.session = aiohttp.ClientSession(
+            timeout=self.timeout,
+            connector=TCPConnector(ssl=create_ssl_context())
+        )
         return self
     
     async def __aexit__(self, exc_type, exc_val, exc_tb):

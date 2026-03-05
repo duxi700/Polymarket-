@@ -9,14 +9,14 @@ import random
 import time
 
 MOCK_EVENT_DATA = {
-    "slug": "dota2-flc-liquid-2026-02-13",
-    "title": "Dota2: FLC vs Liquid",
+    "slug": "cbb-hamp-ncat-2026-02-13",
+    "title": "CBB: Hampton vs NC A&T",
     "markets": [{
-        "conditionId": "0x1234567890abcdef",
-        "question": "Will FLC win?",
+        "conditionId": "0xcbb1234567890abc",
+        "question": "Will Hampton win?",
         "tokens": [
-            {"outcome": "Yes", "token_id": "token-yes-1", "outcome_id": "0xyes1", "price": "0.45"},
-            {"outcome": "No", "token_id": "token-no-1", "outcome_id": "0xno1", "price": "0.55"}
+            {"outcome": "Hampton wins", "token_id": "token-hamp-1", "outcome_id": "0xhamp1", "price": "0.58"},
+            {"outcome": "NC A&T wins", "token_id": "token-ncat-1", "outcome_id": "0xncat1", "price": "0.42"}
         ]
     }]
 }
@@ -135,7 +135,7 @@ async def run_monitor():
     setup_logging(config['logging'])
     
     monitor = PolymarketMonitor(
-        market_url="https://polymarket.com/event/dota2-flc-liquid-2026-02-13",
+        market_url="https://polymarket.com/event/cbb-hamp-ncat-2026-02-13",
         config=config,
         thresholds=thresholds
     )

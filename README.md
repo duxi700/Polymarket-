@@ -81,6 +81,9 @@ python main.py "https://polymarket.com/event/your-event-slug"
 # 方式 2: 交互式输入
 python main.py
 # 然后输入市场 URL
+
+# 方式 3: 推荐（自动使用项目虚拟环境）
+./start_monitor.sh "https://polymarket.com/event/your-event-slug"
 ```
 
 ### 4. 查看日志

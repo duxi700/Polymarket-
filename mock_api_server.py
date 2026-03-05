@@ -72,12 +72,14 @@ async def handle_event(request):
     """处理事件查询请求 GET /events"""
     slug = request.query.get('slug', '')
     
-    if slug == MOCK_EVENT_DATA['slug']:
-        print(f"[Mock API] Event request: slug={slug}")
-        # 返回数组格式，符合真实API的响应结构
-        return web.json_response([MOCK_EVENT_DATA])
-    else:
-        return web.json_response({"error": "Event not found"}, status=404)
+    # 总是返回mock数据，不管slug是什么
+    print(f"[Mock API] Event request: slug={slug}")
+    # 动态修改slug以匹配请求
+    mock_data = MOCK_EVENT_DATA.copy()
+    mock_data['slug'] = slug
+    mock_data['title'] = f"Mock Event: {slug}"
+    # 返回数组格式，符合真实API的响应结构
+    return web.json_response([mock_data])
 
 async def handle_orderbook(request):
     """处理订单簿查询请求 GET /book"""

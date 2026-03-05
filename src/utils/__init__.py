@@ -4,5 +4,6 @@
 
 from .logger import setup_logging
 from .rate_limiter import RateLimiter
+from .ssl_context import create_ssl_context
 
-__all__ = ["setup_logging", "RateLimiter"]
+__all__ = ["setup_logging", "RateLimiter", "create_ssl_context"]

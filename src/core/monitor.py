@@ -5,6 +5,7 @@
 
 import asyncio
 import aiohttp
+from aiohttp import TCPConnector
 from typing import Dict, Optional
 from loguru import logger
 from datetime import datetime
@@ -13,6 +14,7 @@ from ..api import MarketParser, PolymarketClient, MarketInfo
 from ..core.state import OutcomeState
 from ..detection import EdgeDetectionEngine
 from ..output import ConsoleOutput
+from ..utils.ssl_context import create_ssl_context
 
 
 class PolymarketMonitor:
@@ -63,7 +65,9 @@ class PolymarketMonitor:
         
         try:
             # 创建 HTTP 会话
-            async with aiohttp.ClientSession() as session:
+            async with aiohttp.ClientSession(
+                connector=TCPConnector(ssl=create_ssl_context())
+            ) as session:
                 # 初始化组件
                 self.client = PolymarketClient(
                     clob_url=self.clob_url,
